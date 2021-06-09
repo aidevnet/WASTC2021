@@ -1,0 +1,11 @@
+---
+loopback0_ip: 192.168.0.2/32
+loopback1_ip: 192.168.2.2/32
+router_bgp: '65532'
+bgp_interface: loopback1
+bgp_router_id: 2.2.2.2
+bgp_neighbor: 192.168.0.1
+bgp_remote_as: '65531'
+bgp_update_source: loopback0
+
+vlan_106_ip: 172.16.106.3/24

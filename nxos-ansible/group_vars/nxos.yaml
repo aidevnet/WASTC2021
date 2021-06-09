@@ -1,0 +1,21 @@
+---
+
+# ansible-vault encrypt_string --vault-id vault_pass.txt 'cisco' --name 'ansible_user'
+ansible_user: cisco
+
+# ansible-vault encrypt_string --vault-id vault_pass.txt 'cisco' --name 'ansible_password'
+ansible_password: cisco
+
+ansible_network_os: nxos
+
+# OSPF Settings
+ospf_interface: loopback0
+ospf_number: '1'
+ospf_area: 0.0.0.0
+
+vlan_106_id: 106
+vlan_106_name: ansible
+vlan_106_descr: ansible svi
+
+hsrp_area: '10'
+hsrp_vip: 172.16.106.1
