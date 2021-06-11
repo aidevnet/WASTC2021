@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "736321a1-36ec-4f2f-b93f-7ed5f7b90187",
+		"name": "Model Driven Programmability - RESTCONF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NX-OS",
+			"item": [
+				{
+					"name": "Read Top Level RESTCONF",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dmFncmFudDp2YWdyYW50"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}:{{port}}/restconf",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"restconf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read models implemented by the device",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Body matches string\"] = responseBody.has(\"interface\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dmFncmFudDp2YWdyYW50"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}:{{port}}/restconf/data/netconf-state/capabilities",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"restconf",
+								"data",
+								"netconf-state",
+								"capabilities"
+							]
+						},
+						"description": "This command reads a subset of the information available\nin the ietf-netconf-monitoring model.  The information returned\nis the list of all models, revisions, deviations on this device.\n\nUsing this command is the definitive way to determine the exact\nimplementation and versions on the device.  This information can\nbe used by an intelligent management client to make decisions\non how to use the RESTCONF interface.\n\nThis example for the ietf-interfaces model identifies the \nrevision data as 5.8.2014 and lists specific feature options\nsupported and also the name of the module applying deviations \nthat change the information exposed by the model.\n\n      \"urn:ietf:params:xml:ns:yang:\n      ietf-interfaces?module=ietf-interfaces&\n      revision=2014-05-08&features=pre-provisioning,if-mib,\n      arbitrary-names&deviations=ietf-ip-devs\",\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Read system configuration",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dmFncmFudDp2YWdyYW50"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}:{{port}}/restconf/data/Cisco-NX-OS-device:System",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"restconf",
+								"data",
+								"Cisco-NX-OS-device:System"
+							]
+						},
+						"description": "/api is the top level REST resource.\nReading this resource shows what datastores\nare available and what operations are available.\n\nOperations are executed by sending a GET command\nto the URL identified for the operation."
+					},
+					"response": []
+				},
+				{
+					"name": "Read VLAN configuration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Body matches string\"] = responseBody.has(\"interface\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dmFncmFudDp2YWdyYW50"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}:{{port}}/restconf/data/Cisco-NX-OS-device:System/bd-items",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"restconf",
+								"data",
+								"Cisco-NX-OS-device:System",
+								"bd-items"
+							]
+						},
+						"description": "This command reads a subset of the information available\nin the ietf-netconf-monitoring model.  The information returned\nis the list of all models, revisions, deviations on this device.\n\nUsing this command is the definitive way to determine the exact\nimplementation and versions on the device.  This information can\nbe used by an intelligent management client to make decisions\non how to use the RESTCONF interface.\n\nThis example for the ietf-interfaces model identifies the \nrevision data as 5.8.2014 and lists specific feature options\nsupported and also the name of the module applying deviations \nthat change the information exposed by the model.\n\n      \"urn:ietf:params:xml:ns:yang:\n      ietf-interfaces?module=ietf-interfaces&\n      revision=2014-05-08&features=pre-provisioning,if-mib,\n      arbitrary-names&deviations=ietf-ip-devs\",\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Read BGP configuration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Body matches string\"] = responseBody.has(\"interface\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "saveHelperData",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/yang-data+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dmFncmFudDp2YWdyYW50"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}:{{port}}/restconf/data/Cisco-NX-OS-device:System/bgp-items/inst-items/dom-items/Dom-list",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"restconf",
+								"data",
+								"Cisco-NX-OS-device:System",
+								"bgp-items",
+								"inst-items",
+								"dom-items",
+								"Dom-list"
+							]
+						},
+						"description": "This command reads a subset of the information available\nin the ietf-netconf-monitoring model.  The information returned\nis the list of all models, revisions, deviations on this device.\n\nUsing this command is the definitive way to determine the exact\nimplementation and versions on the device.  This information can\nbe used by an intelligent management client to make decisions\non how to use the RESTCONF interface.\n\nThis example for the ietf-interfaces model identifies the \nrevision data as 5.8.2014 and lists specific feature options\nsupported and also the name of the module applying deviations \nthat change the information exposed by the model.\n\n      \"urn:ietf:params:xml:ns:yang:\n      ietf-interfaces?module=ietf-interfaces&\n      revision=2014-05-08&features=pre-provisioning,if-mib,\n      arbitrary-names&deviations=ietf-ip-devs\",\n"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
